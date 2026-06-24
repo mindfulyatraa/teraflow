@@ -1,0 +1,17 @@
+{
+  "name": "teraflow-downloader",
+  "version": "1.0.0",
+  "description": "High-Fidelity TeraBox Decryption & Downloader Engine",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite",
+    "start": "vite"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "m2h-terabox": "^1.0.0",
+    "terabox-dld-kaiiddo": "^1.0.0"
+  }
+}

@@ -1,0 +1,87 @@
+/* TERAFLOW - Redesigned Styling System matching PlayTera.in */
+
+body {
+    background-color: #080810;
+    background-image: 
+        radial-gradient(circle at 15% 20%, rgba(160, 120, 255, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(0, 219, 231, 0.06) 0%, transparent 45%),
+        linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 50px 50px, 50px 50px;
+    background-attachment: fixed;
+    color: #e4e1ed;
+    font-family: 'Manrope', sans-serif;
+}
+
+.font-headline {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.font-body {
+    font-family: 'Manrope', sans-serif;
+}
+
+/* Frosted Glassmorphism Panels */
+.glass-panel {
+    background: rgba(24, 24, 44, 0.45);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-panel:hover {
+    border-color: rgba(160, 120, 255, 0.2);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #080810;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(160, 120, 255, 0.3);
+    border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 219, 231, 0.5);
+}
+
+/* Details and Accordions */
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Table Customizations */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Focus and input styling overrides */
+input#link-input {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    color: #ffffff !important;
+}
+
+input#link-input:focus {
+    box-shadow: none !important;
+}
+
+/* Smooth transitions */
+.transition-all {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+}

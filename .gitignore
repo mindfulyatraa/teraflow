@@ -1,0 +1,10 @@
+node_modules/
+logs/
+__pycache__/
+*.log
+.env
+proxies.txt
+.DS_Store
+dist/
+.agents/
+.gemini/
