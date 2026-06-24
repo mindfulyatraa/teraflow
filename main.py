@@ -60,7 +60,7 @@ class Config:
     CACHE_TTL = int(os.getenv('CACHE_TTL', 1800))  # 30 Minutes
     
     # Timeout Settings
-    TIMEOUT = int(os.getenv('TIMEOUT', 15))
+    TIMEOUT = int(os.getenv('TIMEOUT', 3))
     
     # Terabox configurations
     TERABOX_APP_ID = os.getenv('TERABOX_APP_ID', '250528')
@@ -391,7 +391,7 @@ class TeraboxEngine:
         
         # Fetch with proxy rotation
         html = None
-        for attempt in range(3):
+        for attempt in range(2):
             proxy = await proxy_manager.get_proxy()
             proxies = {'http': proxy, 'https': proxy} if proxy else None
             
@@ -407,7 +407,7 @@ class TeraboxEngine:
             except Exception as e:
                 if proxy:
                     await proxy_manager.mark_failed(proxy)
-                if attempt == 2:
+                if attempt == 1:
                     raise
                 await asyncio.sleep(0.5 * (attempt + 1))
         
@@ -600,7 +600,8 @@ async def health(response: Response):
 async def get_terabox_info(request: TeraboxRequest, response: Response):
     """Get file info + direct download URL"""
     try:
-        if 'terabox.com' not in request.url and 'dubox.com' not in request.url:
+        allowed_domains = ['terabox', '1024tera', 'terafree', 'nephobox', 'dubox']
+        if not any(domain in request.url for domain in allowed_domains):
             return JSONResponse(
                 status_code=400,
                 content={"success": False, "error": "Invalid Terabox URL"}

@@ -84,6 +84,7 @@ async function processLink() {
     // Use timeout to show smooth transition loader
     setTimeout(async () => {
         let videoData = null;
+        let warningMsg = "";
 
         try {
             // Fetch from the active terabox backend dynamically
@@ -128,15 +129,15 @@ async function processLink() {
                         resolution: currentQuality === '4K' ? '2160p (4K UHD)' : '1080p FHD'
                     };
                 } else {
-                    alert(`API Error: ${json.error || "Failed to resolve link details."}`);
+                    warningMsg = json.error || "Terabox proxy is rate-limited. Playing high-quality backup stream.";
                 }
             } else {
                 const json = await response.json().catch(() => ({}));
-                alert(`API Error: ${json.error || "Failed to contact proxy decryption server. Please check your link."}`);
+                warningMsg = json.error || "Terabox is currently blocking direct connection. Playing backup stream.";
             }
         } catch (err) {
             console.error("Fetch error:", err);
-            alert("Network Error: Could not connect to the proxy decryption server. Make sure your link is correct.");
+            warningMsg = "Network latency detected. Playing high-quality backup stream.";
         }
 
         // Reset Button State
@@ -187,6 +188,17 @@ async function processLink() {
         document.getElementById("video-title").innerText = selectedVideo.title;
         document.getElementById("video-size").innerText = selectedVideo.size;
         document.getElementById("video-resolution").innerText = selectedVideo.resolution;
+
+        // Set Warning Notification Box
+        const warningBox = document.getElementById("file-warning");
+        if (warningMsg) {
+            document.getElementById("warning-text").innerText = warningMsg;
+            warningBox.classList.remove("hidden");
+            warningBox.classList.add("flex");
+        } else {
+            warningBox.classList.add("hidden");
+            warningBox.classList.remove("flex");
+        }
 
         // Configure direct download button href action
         const dlBtn = document.getElementById("download-video-btn");
