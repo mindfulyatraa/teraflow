@@ -20,7 +20,6 @@ import random
 import re
 import requests
 from contextlib import asynccontextmanager
-import uvicorn
 
 # Try imports for optional database components
 try:
