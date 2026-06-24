@@ -303,3 +303,10 @@ window.addEventListener("click", function(event) {
         closeModal();
     }
 });
+
+// Bind interactive functions to window globally to prevent Vite scoping blocks
+window.processLink = processLink;
+window.openModal = openModal;
+window.closeModal = closeModal;
+window.openPlayer = openPlayer;
+window.setQuality = setQuality;
