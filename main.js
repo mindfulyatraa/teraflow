@@ -115,16 +115,16 @@ async function processLink() {
                         sizeStr = (sizeBytes / Math.pow(1024, i)).toFixed(2) + " " + sizes[i];
                     }
 
-                    // Direct stream URL hosted on the backend
-                    const streamUrl = isLocal ? `http://localhost:8000${fileData.stream_url}` : fileData.stream_url;
+                    // Direct CDN URL for fast client-side streaming and downloading
+                    const directCdnUrl = fileData.direct_url;
                     
                     videoData = {
                         title: fileData.filename || "Decrypted_Video_Link.mp4",
                         size: sizeStr || "Unknown Size",
                         duration: "N/A",
                         thumbnail: thumbUrl,
-                        videoUrl: streamUrl,
-                        downloadUrl: fileData.direct_url,
+                        videoUrl: directCdnUrl, // Stream directly from Terabox CDN (fast & stable)
+                        downloadUrl: directCdnUrl,
                         resolution: currentQuality === '4K' ? '2160p (4K UHD)' : '1080p FHD'
                     };
                 } else {
