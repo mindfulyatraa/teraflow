@@ -4,8 +4,8 @@
   "description": "High-Fidelity TeraBox Decryption & Downloader Engine",
   "main": "index.html",
   "scripts": {
-    "dev": "vite",
-    "start": "vite"
+    "dev": "vite public",
+    "start": "vite public"
   },
   "devDependencies": {
     "vite": "^5.0.0"
